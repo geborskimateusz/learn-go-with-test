@@ -3,6 +3,8 @@ package test
 import (
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
+
 	arraysAndSlices "geborskimateusz.com/m/arraysandslices"
 )
 
@@ -18,7 +20,14 @@ func TestAddSum(t *testing.T) {
 }
 
 func TestArrSums(t *testing.T) {
-	t.Skip("\nTO DO" +
-		"\nCase 1: SumAll([]int{1,2}, []int{0,9}) would return []int{3, 9}i" +
-		"\nCase 2: SumAll([]int{1,1,1}) would return []int{3}")
+	givenFirstArr := []int{1, 2, 3}
+	givenSecArr := []int{4, 5}
+	expected := []int{6, 9}
+
+	sum := arraysAndSlices.ArrSums(givenFirstArr, givenSecArr)
+
+	if !cmp.Equal(sum, expected) {
+		t.Errorf("expected %v but got %v", expected, sum)
+	}
+
 }
