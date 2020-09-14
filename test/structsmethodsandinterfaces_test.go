@@ -7,7 +7,8 @@ import (
 )
 
 func TestPerimeter(t *testing.T) {
-	got := geometry.Perimeter(10.00, 20.00)
+	rectangle := geometry.Rectangle{10, 20}
+	got := geometry.Perimeter(rectangle)
 	want := 60.00
 
 	if got != want {
@@ -16,10 +17,11 @@ func TestPerimeter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	got := geometry.Area(10.00, 20.00)
-	want := 200.00
+	circle := geometry.Circle{20}
+	got := geometry.Area(circle)
+	want := 1256.00
 
 	if got != want {
-		t.Errorf("got %.2f want %.2f", got, want)
+		t.Errorf("got %g want %g", got, want)
 	}
 }
