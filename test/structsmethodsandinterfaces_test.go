@@ -17,11 +17,26 @@ func TestPerimeter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	circle := geometry.Circle{20}
-	got := geometry.Area(circle)
-	want := 1256.00
-
-	if got != want {
-		t.Errorf("got %g want %g", got, want)
+	assertEqual := func(t *testing.T, got, want float64) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got %g want %g", got, want)
+		}
 	}
+
+	calculateArea := func(t *testing.T, s geometry.Shape, want float64) {
+		assertEqual(t, s.Area(), want)
+	}
+
+	t.Run("Calculate area of circle", func(t *testing.T) {
+		circle := geometry.Circle{20}
+		want := 1256.00
+		calculateArea(t, circle, want)
+	})
+
+	t.Run("Calculate area of rectangle", func(t *testing.T) {
+		rectangle := geometry.Rectangle{20.00, 20.00}
+		want := 400.00
+		calculateArea(t, rectangle, want)
+	})
 }
