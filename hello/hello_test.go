@@ -1,9 +1,7 @@
-package test
+package hello
 
 import (
 	"testing"
-
-	hello "geborskimateusz.com/m/hello"
 )
 
 func TestHello(t *testing.T) {
@@ -22,20 +20,20 @@ func TestHello(t *testing.T) {
 
 	t.Run("saying hello to Mateusz in Polish", func(t *testing.T) {
 		var name string = "Mateusz"
-		got := hello.Hello(name, plLang)
+		got := Hello(name, plLang)
 		want := "Witaj " + name
 		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("saying hello to Mateusz in English", func(t *testing.T) {
 		var name string = "Mateusz"
-		got := hello.Hello(name, engLang)
+		got := Hello(name, engLang)
 		want := "Hello " + name
 		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("saying hello to the world", func(t *testing.T) {
-		got := hello.Hello("", "")
+		got := Hello("", "")
 		want := "Hello world"
 		assertCorrectMessage(t, got, want)
 	})
