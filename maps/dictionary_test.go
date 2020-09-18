@@ -1,6 +1,9 @@
 package maps
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSearch(t *testing.T) {
 	t.Run("on known word", func(t *testing.T) {
@@ -43,11 +46,12 @@ func TestAdd(t *testing.T) {
 		givenVal := "this is just a test"
 
 		dictionary := Dictionary{}
-
+		// fmt.Println(dictionary)
 		dictionary.Add(givenKey, givenVal)
 
 		err := dictionary.Add(givenKey, givenVal)
 
+		fmt.Println(dictionary)
 		asssertError(t, err, ErrDuplicateKey)
 	})
 }
@@ -65,5 +69,5 @@ func asssertError(t *testing.T, err, want error) {
 		t.Fatal("Expected error got nil")
 	}
 
-	assertStrings(t, ErrKeyNotFound.Error(), want.Error())
+	assertStrings(t, err.Error(), want.Error())
 }

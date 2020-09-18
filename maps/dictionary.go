@@ -1,17 +1,20 @@
 package maps
 
-import (
-	"errors"
+var (
+	ErrKeyNotFound  = DictionaryError("There is no such key in dictionary")
+	ErrDuplicateKey = DictionaryError("Key already exist")
 )
 
-// ErrKeyNotFound thrown when key not found in map
-var ErrKeyNotFound = errors.New("There is no such key in dictionary")
-var ErrDuplicateKey = errors.New("Key already exist")
+type DictionaryError string
+
+func (e DictionaryError) Error() string {
+	return string(e)
+}
 
 // Dictionary stores key:value map of strings
 type Dictionary map[string]string
 
-// Search for key in Dictoinary
+// Search for key in dictionary
 func (d Dictionary) Search(key string) (string, error) {
 	foundEl, ok := d[key]
 
@@ -21,14 +24,18 @@ func (d Dictionary) Search(key string) (string, error) {
 	return foundEl, nil
 }
 
-// Add unique values to dictrionary
+// Add unique values to dictionary
 func (d Dictionary) Add(key, value string) error {
-	_, ok := d[key]
+	_, err := d.Search(key)
 
-	if ok {
+	switch err {
+	case ErrKeyNotFound:
+		d[key] = value
+	case nil:
 		return ErrDuplicateKey
+	default:
+		return err
 	}
 
-	d[key] = value
 	return nil
 }
