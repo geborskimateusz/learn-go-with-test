@@ -20,12 +20,20 @@ func (d *DefaultSleeper) Sleep() {
 const countdownStart = 3
 const finalWord = "Go!"
 
+type ConfigurableSleeper struct {
+	duration time.Duration
+	sleep    func(time.Duration)
+}
+
+func (cs *ConfigurableSleeper) Sleep() {
+	fmt.Printf("Will sleep for %v", (cs.duration))
+	time.Sleep(cs.duration)
+}
+
 func Countdown(out io.Writer, sleeper Sleeper) {
-	for i := countdownStart; i > 0; i-- {
-		sleeper.Sleep()
-	}
 
 	for i := countdownStart; i > 0; i-- {
+		sleeper.Sleep()
 		fmt.Fprintln(out, i)
 	}
 
