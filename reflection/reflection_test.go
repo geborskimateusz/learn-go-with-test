@@ -19,6 +19,22 @@ func TestWalk(t *testing.T) {
 			}{"Matthew"},
 			[]string{"Matthew"},
 		},
+		{
+			"Struct with two string fields",
+			struct {
+				Name string
+				City string
+			}{"Matthew", "London"},
+			[]string{"Matthew", "London"},
+		},
+		{
+			"Struct with two string fields",
+			struct {
+				Name string
+				Age  int
+			}{"Matthew", 33},
+			[]string{"Matthew"},
+		},
 	}
 
 	for _, test := range cases {
@@ -28,10 +44,6 @@ func TestWalk(t *testing.T) {
 		walk(test.Input, func(input string) {
 			got = append(got, input)
 		})
-
-		if len(got) != 1 {
-			t.Errorf("Wrong number of function calls, expected %d got %d ", 1, len(got))
-		}
 
 		if !reflect.DeepEqual(got, test.Expected) {
 			t.Errorf("got %v want %v", got, test.Expected)
