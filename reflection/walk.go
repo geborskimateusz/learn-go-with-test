@@ -1,6 +1,7 @@
 package reflection
 
 import (
+	"fmt"
 	"reflect"
 )
 
@@ -17,6 +18,15 @@ type Profile struct {
 func walk(x interface{}, fn func(input string)) {
 
 	val := getVal(x)
+
+	if reflect.TypeOf(val).Kind() == reflect.Slice {
+		fmt.Println(val.Kind())
+
+		for i := 0; i < val.Len(); i++ {
+			fmt.Println(val.Index(i))
+		}
+	}
+
 	for i := 0; i < val.NumField(); i++ {
 		field := val.Field(i)
 
@@ -30,6 +40,10 @@ func walk(x interface{}, fn func(input string)) {
 }
 
 func getVal(x interface{}) reflect.Value {
-	ptr := reflect.ValueOf(x)
-	return reflect.Indirect(ptr)
+	val := reflect.ValueOf(x)
+	if val.Kind() == reflect.Ptr {
+		val = val.Elem()
+	}
+	fmt.Println(val)
+	return val
 }
