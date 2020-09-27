@@ -6,11 +6,12 @@ import (
 	"net/http"
 )
 
+// Store fetches data from request
 type Store interface {
 	Fetch(ctx context.Context) (string, error)
-	// Cancel()
 }
 
+// Server is simple implementation of Http flow
 func Server(store Store) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		data, err := store.Fetch(r.Context())
