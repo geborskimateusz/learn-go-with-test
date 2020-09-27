@@ -4,16 +4,19 @@ import (
 	"reflect"
 )
 
+// Person is a testing struct
 type Person struct {
 	Name    string
 	Profile Profile
 }
 
+// Profile belongs to Person
 type Profile struct {
 	Age  int
 	City string
 }
 
+// walks trought field types and return value
 func walk(x interface{}, fn func(input string)) {
 
 	val := getVal(x)
