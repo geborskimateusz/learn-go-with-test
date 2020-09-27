@@ -1,5 +1,6 @@
 package arraysandslices
 
+// AddSum creates sum of an array
 func AddSum(arr []int) (sum int) {
 	for _, num := range arr {
 		sum += num
@@ -7,6 +8,7 @@ func AddSum(arr []int) (sum int) {
 	return
 }
 
+// ArrSums create sum of arrays
 func ArrSums(arrays ...[]int) (arrOfSums []int) {
 
 	for _, arr := range arrays {
