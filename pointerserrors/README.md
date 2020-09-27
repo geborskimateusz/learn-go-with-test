@@ -11,3 +11,5 @@
 - Errors are the way to signify failure when calling a function/method.
 - By listening to our tests we concluded that checking for a string in an error would result in a flaky test. So we refactored to use a meaningful value instead and this resulted in easier to test code and concluded this would be easier for users of our API too.
 - This is not the end of the story with error handling, you can do more sophisticated things but this is just an intro. Later sections will cover more strategies.
+
+Quoted from [Learn Go with Test](https://quii.gitbook.io/learn-go-with-tests/)

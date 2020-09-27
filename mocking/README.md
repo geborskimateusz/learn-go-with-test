@@ -4,3 +4,4 @@
 - Without mocks you may have to set up databases and other third parties things just to test simple business rules. You're likely to have slow tests, resulting in slow feedback loops.
 - By having to spin up a database or a webservice to test something you're likely to have fragile tests due to the unreliability of such services.
 
+Quoted from [Learn Go with Test](https://quii.gitbook.io/learn-go-with-tests/)

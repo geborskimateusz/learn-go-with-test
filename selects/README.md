@@ -5,3 +5,5 @@
 ## httptest
 - A convenient way of creating test servers so you can have reliable and controllable tests.
 - Using the same interfaces as the "real" net/http servers which is consistent and less for you to learn.
+
+Quoted from [Learn Go with Test](https://quii.gitbook.io/learn-go-with-tests/)
